@@ -1,3 +1,10 @@
+import os
+from dotenv import load_dotenv
+load_dotenv()
+import dj_database_url
+
+
+
 """
 Django settings for restaurant_booking_system project.
 
@@ -19,11 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#09+db%i+=3u@ls9kvuo*7g1*+7c1iruo0phw#q7_p#@j_bt-#'
+SECRET_KEY = os.getenv("SECRET_KEY", "fallback-secret")
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = []
 
@@ -74,10 +79,11 @@ WSGI_APPLICATION = 'restaurant_booking_system.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL'),
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
 
 
