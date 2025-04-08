@@ -1,10 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
-class Restaurant(models.Model):
-    name = models.CharField(max_length=100)
-    address = models.CharField(max_length=255)
-    phone_number = models.CharField(max_length=15)
-    
+# Table model
+class Table(models.Model):
+    table_number = models.PositiveIntegerField(unique=True)
+    capacity = models.PositiveIntegerField()
+
     def __str__(self):
-        return self.name
+        return f"Table {self.table_number} (Seats: {self.capacity})"
