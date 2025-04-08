@@ -9,3 +9,20 @@ class Table(models.Model):
 
     def __str__(self):
         return f"Table {self.table_number} (Seats: {self.capacity})"
+
+# Booking model
+class Booking(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    table = models.ForeignKey(Table, on_delete=models.CASCADE)
+    date = models.DateField()
+    time = models.TimeField()
+    guests = models.PositiveIntegerField()
+    status = models.CharField(max_length=20, choices=[
+        ('Booked', 'Booked'),
+        ('Cancelled', 'Cancelled')
+    ], default='Booked')
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Booking by {self.user.username} on {self.date} at {self.time}"
