@@ -25,8 +25,11 @@ SECRET_KEY = 'django-insecure-3i#+h(v4@#p9*32$h$=$$s41@)zoq9#))^$tk6k=5eluwu-s)#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.herokuapp.com']
-
+ALLOWED_HOSTS = [
+    'restaurant-booking-system-001-81d0f1b38ae2.herokuapp.com',
+    'localhost',
+    '127.0.0.1',
+]
 
 # Application definition
 
