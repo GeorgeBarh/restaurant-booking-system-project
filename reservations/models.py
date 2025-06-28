@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from cloudinary.models import CloudinaryField
 
 
 class Table(models.Model):
@@ -8,47 +7,46 @@ class Table(models.Model):
     capacity = models.PositiveIntegerField()
 
     class Meta:
-        ordering = ['table_number']
+        ordering = ["table_number"]
 
     def __str__(self):
-        return f"Table {self.table_number} (seats {self.capacity})"
+        return f"Table {self.table_number} (Seats {self.capacity})"
 
 
 class Booking(models.Model):
-    STATUS_CHOICES = [
-        ('pending', 'Pending'),
-        ('confirmed', 'Confirmed'),
-        ('cancelled', 'Cancelled'),
-    ]
+    STATUS_CHOICES = (
+        (0, "Pending"),
+        (1, "Confirmed"),
+        (2, "Cancelled"),
+    )
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookings')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
     time = models.TimeField()
     guests = models.PositiveIntegerField()
-    table = models.ForeignKey(
-        Table,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='bookings'
-    )
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
+    table = models.ForeignKey(Table, on_delete=models.CASCADE)
+    status = models.IntegerField(choices=STATUS_CHOICES, default=0)
 
     class Meta:
-        ordering = ['date', 'time']
+        ordering = ["date", "time"]
 
     def __str__(self):
-        return f"Booking by {self.user} on {self.date} at {self.time}"
+        return f"{self.user} - {self.date} at {self.time}"
 
 
 class MenuItem(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
+    STATUS = (
+        (0, "Unavailable"),
+        (1, "Available"),
+    )
+
+    name = models.CharField(max_length=200, unique=True)
+    description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    image = CloudinaryField('image', blank=True, null=True)
+    status = models.IntegerField(choices=STATUS, default=1)
 
     class Meta:
-        ordering = ['name']
+        ordering = ["name"]
 
     def __str__(self):
-        return f"{self.name} - €{self.price:.2f}"
+        return self.name
