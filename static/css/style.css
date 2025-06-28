@@ -1,0 +1,167 @@
+/* General */
+body {
+    background-color: #F9FAFC;
+    font-family: 'Lato', sans-serif;
+}
+
+.brand {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.red-o {
+    color: #D72638;
+}
+
+.thin {
+    font-weight: 300;
+}
+
+/* Layout and Backgrounds */
+.light-bg {
+    background-color: #fff;
+}
+
+.dark-bg {
+    background-color: #2C3E50;
+}
+
+.main-bg {
+    background-color: #F9FAFC;
+}
+
+/* Cards */
+.card {
+    border: none;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+/* Menu Images or Labels */
+.image-container {
+    position: relative;
+}
+
+.image-flash {
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    background-color: #27AE60;
+    padding: 5px 10px;
+    color: #fff;
+    font-size: 0.85rem;
+    border-radius: 0 4px 4px 0;
+}
+
+.author {
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+}
+
+/* Headings */
+h2,
+h4,
+.card-title {
+    color: #2C3E50;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+}
+
+.menu-link,
+.page-link {
+    color: #2C3E50;
+    font-weight: 600;
+}
+
+.menu-link:hover,
+.page-link:hover {
+    color: #D72638;
+}
+
+/* Buttons */
+.btn-signup,
+.btn-edit {
+    background-color: #D72638;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+}
+
+.btn-signup:hover,
+.btn-signup:active {
+    background-color: #fff;
+    color: #D72638;
+    border: 1px solid #D72638;
+}
+
+.btn-like,
+.btn-delete {
+    background: transparent;
+    border: none;
+}
+
+.btn-like {
+    color: #D72638;
+}
+
+.btn-delete {
+    background-color: #D72638;
+    color: #fff;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+}
+
+.btn-like:hover,
+.btn-delete:hover {
+    opacity: 0.85;
+}
+
+/* Pagination */
+.pagination .page-link {
+    border: none;
+    color: #2C3E50;
+    font-weight: 500;
+    margin: 0 5px;
+}
+
+.pagination .page-link:hover {
+    background-color: #D72638;
+    color: white;
+}
+
+/* Footer */
+footer {
+    background-color: #2C3E50;
+    padding: 1rem 0;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+footer i {
+    margin-left: 10px;
+}
+
+/* Utilities */
+.faded {
+    color: #a0a0a0;
+}
+
+.approval {
+    color: #e0aeb1;
+}
