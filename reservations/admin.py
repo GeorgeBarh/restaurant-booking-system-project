@@ -1,5 +1,7 @@
 from django.contrib import admin
 from .models import Table, Booking, MenuItem
+from django_summernote.admin import SummernoteModelAdmin
+
 
 
 @admin.register(Table)
@@ -17,7 +19,7 @@ class BookingAdmin(admin.ModelAdmin):
 
 
 @admin.register(MenuItem)
-class MenuItemAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'status')
+class MenuItemAdmin(SummernoteModelAdmin):
+    list_display = ('name', 'price')
     search_fields = ('name',)
-    list_filter = ('status',)
+    summernote_fields = ('description',)
