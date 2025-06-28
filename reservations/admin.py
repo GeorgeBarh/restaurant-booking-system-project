@@ -3,23 +3,22 @@ from .models import Table, Booking, MenuItem
 from django_summernote.admin import SummernoteModelAdmin
 
 
-
 @admin.register(Table)
 class TableAdmin(admin.ModelAdmin):
-    list_display = ('table_number', 'capacity')
-    ordering = ('table_number',)
+    list_display = ('number', 'seats')
+    ordering = ('number',)
 
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ('user', 'date', 'time', 'guests', 'table', 'status')
-    list_filter = ('status', 'date', 'time')
-    search_fields = ('user__username',)
+    list_display = ('name', 'date', 'time', 'table')
+    search_fields = ('name', 'email', 'phone')
     ordering = ('date', 'time')
 
 
 @admin.register(MenuItem)
 class MenuItemAdmin(SummernoteModelAdmin):
-    list_display = ('name', 'price')
-    search_fields = ('name',)
+    list_display = ('name', 'price', 'status', 'created_on')
+    search_fields = ('name', 'description')
+    list_filter = ('status', 'created_on')
     summernote_fields = ('description',)

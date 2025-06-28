@@ -1,52 +1,46 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from django.db import models
+
 
 class Table(models.Model):
-    table_number = models.PositiveIntegerField(unique=True)
-    capacity = models.PositiveIntegerField()
-
-    class Meta:
-        ordering = ["table_number"]
+    number = models.IntegerField(unique=True)
+    seats = models.IntegerField()
 
     def __str__(self):
-        return f"Table {self.table_number} (Seats {self.capacity})"
-
+        return f"Table {self.number} ({self.seats} seats)"
 
 class Booking(models.Model):
-    STATUS_CHOICES = (
-        (0, "Pending"),
-        (1, "Confirmed"),
-        (2, "Cancelled"),
-    )
-
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)  # required
+    email = models.EmailField(blank=True, null=True)
+    phone = models.CharField(max_length=20)  # required
     date = models.DateField()
     time = models.TimeField()
-    guests = models.PositiveIntegerField()
-    table = models.ForeignKey(Table, on_delete=models.CASCADE)
-    status = models.IntegerField(choices=STATUS_CHOICES, default=0)
+    table = models.ForeignKey('Table', on_delete=models.SET_NULL, null=True, blank=True)
+    created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ["date", "time"]
+        constraints = [
+            models.UniqueConstraint(fields=['date', 'time', 'table'], name='unique_table_booking')
+        ]
 
     def __str__(self):
-        return f"{self.user} - {self.date} at {self.time}"
+        return f"Booking for {self.name} on {self.date} at {self.time}"
+
 
 
 class MenuItem(models.Model):
-    STATUS = (
+    STATUS_CHOICES = (
         (0, "Unavailable"),
         (1, "Available"),
     )
 
-    name = models.CharField(max_length=200, unique=True)
-    description = models.TextField(blank=True)
+    name = models.CharField(max_length=100)
+    description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    status = models.IntegerField(choices=STATUS, default=1)
-
-    class Meta:
-        ordering = ["name"]
+    status = models.IntegerField(choices=STATUS_CHOICES, default=1)
+    created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
