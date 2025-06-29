@@ -8,4 +8,6 @@ urlpatterns = [
     path("menu/", include("menu.urls")),
     path("reservations/", include("reservations.urls")),
     path("contact/", include("contact.urls")),
+    path("accounts/", include("allauth.urls")),
+
 ]

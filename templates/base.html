@@ -1,5 +1,8 @@
 {% load static %}
 {% url 'home' as home_url %}
+{% url 'account_login' as login_url %}
+{% url 'account_signup' as signup_url %}
+{% url 'account_logout' as logout_url %}
 
 <!DOCTYPE html>
 <html class="h-100" lang="en">
@@ -32,11 +35,12 @@
                 aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == home_url %}active{% endif %}"
-                            href="{% url 'home' %}">Home</a>
+                            href="{{ home_url }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'menu' %}">Menu</a>
@@ -48,7 +52,27 @@
                         <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                     </li>
                 </ul>
-                <span class="navbar-text text-muted d-none d-lg-inline">
+
+                <!-- Auth Links -->
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == logout_url %}active{% endif %}"
+                            href="{% url 'account_logout' %}">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == signup_url %}active{% endif %}"
+                            href="{% url 'account_signup' %}">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == login_url %}active{% endif %}"
+                            href="{% url 'account_login' %}">Login</a>
+                    </li>
+                    {% endif %}
+                </ul>
+
+                <span class="navbar-text text-muted d-none d-lg-inline ms-3">
                     Fine Dining & Memorable Moments
                 </span>
             </div>
@@ -68,6 +92,10 @@
                 {% block copyright %}
                 &copy; 2025 Our Restaurant
                 {% endblock %}
+            </p>
+            <p class="mb-0 small">
+                <i class="far fa-clock me-2"></i>
+                Open daily from 12:00 PM to 10:00 PM
             </p>
             <p class="mb-0">
                 Follow us:
