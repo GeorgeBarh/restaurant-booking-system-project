@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
+
 class Table(models.Model):
     number = models.IntegerField(unique=True)
     seats = models.IntegerField()
@@ -30,17 +31,3 @@ class Booking(models.Model):
 
 
 
-class MenuItem(models.Model):
-    STATUS_CHOICES = (
-        (0, "Unavailable"),
-        (1, "Available"),
-    )
-
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-    status = models.IntegerField(choices=STATUS_CHOICES, default=1)
-    created_on = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.name

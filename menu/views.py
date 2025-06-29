@@ -1,5 +1,5 @@
+from .models import MenuItem
 from django.views import generic
-from reservations.models import MenuItem
 
 class MenuListView(generic.ListView):
     model = MenuItem
@@ -8,4 +8,13 @@ class MenuListView(generic.ListView):
     paginate_by = 6
 
     def get_queryset(self):
-        return MenuItem.objects.filter(status=1).order_by("-created_on")
+        queryset = MenuItem.objects.filter(status=1).order_by("-created_on")
+        category = self.request.GET.get("category")
+        if category:
+            queryset = queryset.filter(category=category)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["selected_category"] = self.request.GET.get("category", "")
+        return context

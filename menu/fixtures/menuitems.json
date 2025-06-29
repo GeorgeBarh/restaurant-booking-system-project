@@ -1,0 +1,182 @@
+[
+    {
+        "model": "menu.menuitem",
+        "pk": 1,
+        "fields": {
+            "name": "Margherita Pizza",
+            "description": "Classic pizza with fresh tomatoes, mozzarella, and basil.",
+            "price": "8.99",
+            "status": 1,
+            "category": "main",
+            "created_on": "2024-06-01T12:00:00Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 2,
+        "fields": {
+            "name": "Grilled Salmon",
+            "description": "Fresh salmon fillet grilled and served with seasonal vegetables.",
+            "price": "17.50",
+            "status": 1,
+            "category": "main",
+            "created_on": "2024-06-02T13:00:00Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 3,
+        "fields": {
+            "name": "Caesar Salad",
+            "description": "Crisp romaine lettuce, croutons, parmesan, and Caesar dressing.",
+            "price": "9.50",
+            "status": 1,
+            "category": "starter",
+            "created_on": "2024-06-03T11:30:00Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 4,
+        "fields": {
+            "name": "Ribeye Steak",
+            "description": "Juicy ribeye steak cooked to your liking with garlic butter.",
+            "price": "22.00",
+            "status": 1,
+            "category": "main",
+            "created_on": "2024-06-04T18:45:00Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 5,
+        "fields": {
+            "name": "Vegan Buddha Bowl",
+            "description": "A nourishing bowl of quinoa, chickpeas, roasted veggies, and tahini.",
+            "price": "11.25",
+            "status": 1,
+            "category": "vegan",
+            "created_on": "2024-06-05T12:00:00Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 6,
+        "fields": {
+            "name": "Garlic Bread",
+            "description": "Toasted baguette slices with garlic butter and herbs.",
+            "price": "4.50",
+            "status": 1,
+            "category": "starter",
+            "created_on": "2024-06-06T12:00:00Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 7,
+        "fields": {
+            "name": "Spaghetti Carbonara",
+            "description": "Spaghetti tossed with creamy egg sauce, pancetta, and parmesan.",
+            "price": "12.99",
+            "status": 1,
+            "category": "main",
+            "created_on": "2024-06-07T14:15:00Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 8,
+        "fields": {
+            "name": "Tiramisu",
+            "description": "Classic Italian dessert with mascarpone, espresso, and cocoa.",
+            "price": "6.75",
+            "status": 1,
+            "category": "dessert",
+            "created_on": "2024-06-08T16:00:00Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 9,
+        "fields": {
+            "name": "Espresso",
+            "description": "Strong, single shot of freshly brewed espresso.",
+            "price": "2.50",
+            "status": 1,
+            "category": "drink",
+            "created_on": "2024-06-09T09:00:00Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 10,
+        "fields": {
+            "name": "Lemonade",
+            "description": "Freshly squeezed lemonade with mint and ice.",
+            "price": "3.00",
+            "status": 1,
+            "category": "drink",
+            "created_on": "2024-06-09T09:05:00Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 11,
+        "fields": {
+            "name": "Stuffed Mushrooms",
+            "description": "Mushrooms stuffed with cheese, herbs, and breadcrumbs.",
+            "price": "7.25",
+            "status": 1,
+            "category": "starter",
+            "created_on": "2024-06-09T12:30:00Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 12,
+        "fields": {
+            "name": "Panna Cotta",
+            "description": "Creamy vanilla panna cotta with raspberry sauce.",
+            "price": "6.50",
+            "status": 1,
+            "category": "dessert",
+            "created_on": "2024-06-10T15:00:00Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 13,
+        "fields": {
+            "name": "Iced Tea",
+            "description": "Chilled brewed tea with lemon and a hint of peach.",
+            "price": "2.80",
+            "status": 1,
+            "category": "drink",
+            "created_on": "2024-06-10T15:10:00Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 14,
+        "fields": {
+            "name": "Mushroom Risotto",
+            "description": "Creamy risotto with wild mushrooms and truffle oil.",
+            "price": "13.45",
+            "status": 1,
+            "category": "vegan",
+            "created_on": "2024-06-11T13:20:00Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 15,
+        "fields": {
+            "name": "Chocolate Lava Cake",
+            "description": "Warm chocolate cake with a gooey molten center.",
+            "price": "7.00",
+            "status": 1,
+            "category": "dessert",
+            "created_on": "2024-06-12T18:10:00Z"
+        }
+    }
+]

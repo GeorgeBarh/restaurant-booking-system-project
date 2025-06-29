@@ -1,7 +1,21 @@
 {% extends "base.html" %}
+
 {% block content %}
+<!-- Hero Section -->
+<div class="hero-section">
+    <div>
+        <h1>Welcome to Our Restaurant</h1>
+        <p>Fine Dining • Fresh Ingredients • Unforgettable Experience</p>
+        <a href="{% url 'book_table' %}" class="btn btn-primary mt-3">Book a Table</a>
+    </div>
+</div>
+
+<!-- Section Below Hero -->
 <div class="container mt-5">
-    <h1 class="text-center">Welcome to Our Restaurant</h1>
-    <p class="text-center">Enjoy fine dining, delicious meals, and an unforgettable experience.</p>
+    <h2 class="text-center">Discover Our Menu</h2>
+    <p class="text-center">Explore a variety of dishes made with love and quality ingredients.</p>
+    <div class="text-center mt-4">
+        <a href="{% url 'menu' %}" class="btn btn-outline-secondary">View Menu</a>
+    </div>
 </div>
 {% endblock %}

@@ -1,29 +1,66 @@
 {% extends "base.html" %}
+
 {% block content %}
 <div class="container mt-5">
-    <h2 class="mb-4">Our Menu</h2>
+    <h2 class="mb-4 text-center">Our Menu</h2>
+
+    <!-- Category Filter Buttons -->
+    <div class="mb-4 text-center">
+        <a href="{% url 'menu' %}"
+            class="btn btn-outline-secondary {% if not selected_category %}active{% endif %}">All</a>
+        <a href="?category=starter"
+            class="btn btn-outline-secondary {% if selected_category == 'starter' %}active{% endif %}">Starters</a>
+        <a href="?category=main"
+            class="btn btn-outline-secondary {% if selected_category == 'main' %}active{% endif %}">Mains</a>
+        <a href="?category=dessert"
+            class="btn btn-outline-secondary {% if selected_category == 'dessert' %}active{% endif %}">Desserts</a>
+        <a href="?category=drink"
+            class="btn btn-outline-secondary {% if selected_category == 'drink' %}active{% endif %}">Drinks</a>
+        <a href="?category=vegan"
+            class="btn btn-outline-secondary {% if selected_category == 'vegan' %}active{% endif %}">Vegan</a>
+    </div>
+
+    <!-- Menu Cards -->
     <div class="row">
         {% for item in menu_items %}
+        {% if forloop.counter0|divisibleby:3 and not forloop.first %}
+    </div>
+    <div class="row">
+        {% endif %}
         <div class="col-md-4 mb-4">
             <div class="card h-100">
                 <div class="card-body">
                     <h5 class="card-title">{{ item.name }}</h5>
+                    <p class="text-muted mb-1">{{ item.get_category_display }}</p>
+
+                    {% if item.tagline %}
+                    <p class="text-muted">{{ item.tagline }}</p>
+                    {% endif %}
+
                     <p class="card-text">{{ item.description }}</p>
                     <p class="card-text"><strong>€{{ item.price }}</strong></p>
                 </div>
             </div>
         </div>
+        {% empty %}
+        <p class="text-center">No items found in this category.</p>
         {% endfor %}
     </div>
 
     {% if is_paginated %}
     <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
+        <ul class="pagination justify-content-center mt-4">
             {% if page_obj.has_previous %}
-            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+            <li class="page-item">
+                <a class="page-link"
+                    href="?{% if selected_category %}category={{ selected_category }}&{% endif %}page={{ page_obj.previous_page_number }}">&laquo;</a>
+            </li>
             {% endif %}
             {% if page_obj.has_next %}
-            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+            <li class="page-item">
+                <a class="page-link"
+                    href="?{% if selected_category %}category={{ selected_category }}&{% endif %}page={{ page_obj.next_page_number }}">&raquo;</a>
+            </li>
             {% endif %}
         </ul>
     </nav>
