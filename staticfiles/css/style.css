@@ -1,0 +1,183 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* ====== GLOBAL RESET ====== */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'Lato', sans-serif;
+    background-color: #fdfdfd;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ====== TYPOGRAPHY ====== */
+h1,
+h2,
+h3 {
+    color: #2c3e50;
+}
+
+a {
+    text-decoration: none;
+    color: #188181;
+}
+
+a:hover {
+    color: #E84610;
+}
+
+/* ====== NAVBAR ====== */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #188181;
+}
+
+.nav-link.active,
+.nav-link:hover {
+    font-weight: bold;
+    color: #E84610 !important;
+}
+
+/* ====== FOOTER ====== */
+footer {
+    background-color: #445261;
+    color: #fff;
+    padding: 1rem 0;
+}
+
+footer i {
+    font-size: 1.2rem;
+}
+
+/* ====== HERO SECTION ====== */
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)), url('/static/images/restaurant-hero.jpg') no-repeat center center/cover;
+    height: 100vh;
+    width: 100vw;
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 1rem;
+    color: white;
+    position: relative;
+    margin: 0;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #f8f9fa;
+}
+
+.hero-section a.btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 1.1rem;
+}
+
+/* ====== MENU CARDS ====== */
+.card {
+    border: 1px solid #eaeaea;
+    border-radius: 6px;
+    transition: transform 0.2s ease-in-out;
+    height: 100%;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-text {
+    font-size: 0.95rem;
+}
+
+.card .text-muted.mb-1 {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* ====== FILTER BUTTONS ====== */
+.btn-outline-secondary {
+    margin: 0 5px 10px 5px;
+}
+
+.btn-outline-secondary.active {
+    background-color: #188181;
+    color: white;
+    border-color: #188181;
+}
+
+/* ====== PAGINATION ====== */
+.pagination .page-link {
+    color: #188181;
+    border-radius: 5px;
+    margin: 0 2px;
+}
+
+.pagination .page-link:hover {
+    background-color: #188181;
+    color: white;
+}
+
+/* ====== FORMS ====== */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+form input,
+form textarea,
+form select {
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+form button {
+    background-color: #188181;
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+form button:hover {
+    background-color: #0f5a5a;
+}
+
+/* ====== UTILITIES ====== */
+.mt-5 {
+    margin-top: 3rem;
+}
