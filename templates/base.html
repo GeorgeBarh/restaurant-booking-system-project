@@ -81,6 +81,16 @@
 
     <!-- Page Content -->
     <main class="flex-shrink-0 flex-grow-1 bg-light py-4">
+        {% if user.is_authenticated %}
+        <div class="container">
+            <p class="text-end text-muted small">Welcome, {{ user.username }}!</p>
+        </div>
+        {% else %}
+        <div class="container">
+            <p class="text-end text-muted small">You are not logged in</p>
+        </div>
+        {% endif %}
+
         {% block content %}
         {% endblock %}
     </main>
