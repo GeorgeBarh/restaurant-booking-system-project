@@ -1,10 +1,8 @@
-from django.views import generic
-from django.shortcuts import render
-from .models import MenuItem
+from django.views.generic.edit import CreateView
+from .models import Booking
 
-class MenuListView(generic.ListView):
-    model = MenuItem
-    queryset = MenuItem.objects.filter(status=1).order_by('-created_on')
-    template_name = "reservations/index.html"  # Updated path
-    context_object_name = 'menu_list'
-    paginate_by = 6 
+class BookTableView(CreateView):
+    model = Booking
+    fields = ['name', 'email', 'phone', 'date', 'time', 'table']
+    template_name = "reservations/book_table.html"
+    success_url = "/reservations/?success=true"

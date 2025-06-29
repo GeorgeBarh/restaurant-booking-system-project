@@ -48,6 +48,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'reservations',
+    'home',
+    'menu',
+    'contact',
     'django_summernote',
 ]
 
