@@ -5,7 +5,13 @@ from .models import Booking
 from datetime import time
 from django.utils import timezone
 from django.core.exceptions import ValidationError
+from datetime import time, timedelta
 
+TIME_CHOICES = [
+    (time(hour=h, minute=m).strftime("%H:%M"), f"{h:02d}:{m:02d}")
+    for h in range(12, 22)
+    for m in (0, 30)
+]
 
 class BookingForm(forms.ModelForm):
     guests = forms.IntegerField(
@@ -14,30 +20,21 @@ class BookingForm(forms.ModelForm):
         label="Number of Guests",
         widget=forms.NumberInput(attrs={'class': 'form-control'})
     )
+    time = forms.ChoiceField(
+        choices=TIME_CHOICES,
+        label="Time",
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+
     class Meta:
         model = Booking
         fields = ['name', 'email', 'phone', 'guests', 'date', 'time']
         widgets = {
-            'date': forms.DateInput(attrs={'type': 'date'}),
-            'time': forms.TimeInput(attrs={'type': 'time'}),
+            'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
-        # Generate time slots from 12:00 to 22:00 in 30-min increments
-        slots = []
-        current = time(12, 0)
-        while current < time(22, 0):
-            slots.append((current.strftime("%H:%M"), current.strftime("%H:%M")))
-            hour, minute = current.hour, current.minute + 30
-            if minute == 60:
-                hour += 1
-                minute = 0
-            current = time(hour, minute)
-
-        self.fields['time'] = forms.ChoiceField(choices=slots)
-
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.layout = Layout(
@@ -49,9 +46,3 @@ class BookingForm(forms.ModelForm):
             Field('time'),
             Submit('submit', 'Book Table', css_class='btn btn-primary w-100 mt-3')
         )
-
-    def clean_date(self):
-        date = self.cleaned_data['date']
-        if date < timezone.localdate():
-            raise ValidationError("You cannot book for a past date.")
-        return date

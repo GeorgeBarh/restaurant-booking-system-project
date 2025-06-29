@@ -53,3 +53,8 @@ class MyBookingsView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Booking.objects.filter(user=self.request.user).order_by("date", "time")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["today"] = timezone.now().date()
+        return context

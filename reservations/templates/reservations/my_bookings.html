@@ -3,16 +3,40 @@
 <div class="container mt-5">
     <h2 class="mb-4">My Bookings</h2>
     {% if bookings %}
-    <ul class="list-group">
-        {% for booking in bookings %}
-        <li class="list-group-item">
-            <strong>{{ booking.date }} at {{ booking.time }}</strong><br>
-            Table {{ booking.table.number }} for {{ booking.table.seats }} seats
-        </li>
-        {% endfor %}
-    </ul>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="table-light">
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Guests</th>
+                    <th>Table</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.date }}</td>
+                    <td>{{ booking.time }}</td>
+                    <td>{{ booking.guests }}</td>
+                    <td>{{ booking.table }}</td>
+                    <td>{{ booking.phone }}</td>
+                    <td>
+                        {% if booking.date >= today %}
+                        Upcoming
+                        {% else %}
+                        Past
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
     {% else %}
-    <p>You have no upcoming bookings.</p>
+    <p>You have no bookings.</p>
     {% endif %}
 </div>
 {% endblock %}
