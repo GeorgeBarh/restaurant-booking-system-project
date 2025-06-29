@@ -1,11 +1,14 @@
 from django.views.generic.edit import CreateView
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.shortcuts import redirect
-from datetime import date, datetime
+from django.utils.timezone import now
+from datetime import datetime
 from .models import Booking, Table
 from .forms import BookingForm
+from django.utils import timezone
+
 
 class BookTableView(LoginRequiredMixin, CreateView):
     model = Booking
@@ -18,12 +21,17 @@ class BookTableView(LoginRequiredMixin, CreateView):
         date_ = form.cleaned_data['date']
         time_ = form.cleaned_data['time']
 
-        # ❌ Prevent past booking
-        if datetime.combine(date_, time_) < datetime.now():
-            messages.error(self.request, "You cannot book in the past.")
+        #  Prevent past bookings
+        if isinstance(time_, str):
+            time_ = datetime.strptime(time_, "%H:%M").time()
+
+        selected_datetime = datetime.combine(date_, time_)
+        selected_datetime = timezone.make_aware(selected_datetime)
+        if selected_datetime < timezone.now():
+            messages.error(self.request, "You cannot book for a past time.")
             return redirect('book_table')
 
-        # ✅ Find available table
+        #  Find available table
         booked_table_ids = Booking.objects.filter(date=date_, time=time_).values_list('table_id', flat=True)
         available_tables = Table.objects.filter(seats__gte=guests).exclude(id__in=booked_table_ids).order_by('seats')
 
