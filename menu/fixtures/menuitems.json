@@ -3,180 +3,444 @@
         "model": "menu.menuitem",
         "pk": 1,
         "fields": {
-            "name": "Margherita Pizza",
-            "description": "Classic pizza with fresh tomatoes, mozzarella, and basil.",
-            "price": "8.99",
+            "name": "Bruschetta",
+            "description": "Grilled bread rubbed with garlic and topped with tomatoes, olive oil, and basil.",
+            "price": "5.50",
             "status": 1,
-            "category": "main",
-            "created_on": "2024-06-01T12:00:00Z"
+            "category": "starter",
+            "created_on": "2025-06-30T15:46:49.706680Z"
         }
     },
     {
         "model": "menu.menuitem",
         "pk": 2,
         "fields": {
-            "name": "Grilled Salmon",
-            "description": "Fresh salmon fillet grilled and served with seasonal vegetables.",
-            "price": "17.50",
+            "name": "Calamari",
+            "description": "Crispy fried squid served with marinara sauce.",
+            "price": "7.50",
             "status": 1,
-            "category": "main",
-            "created_on": "2024-06-02T13:00:00Z"
+            "category": "starter",
+            "created_on": "2025-06-30T15:47:49.706680Z"
         }
     },
     {
         "model": "menu.menuitem",
         "pk": 3,
         "fields": {
-            "name": "Caesar Salad",
-            "description": "Crisp romaine lettuce, croutons, parmesan, and Caesar dressing.",
-            "price": "9.50",
+            "name": "Garlic Bread",
+            "description": "Toasted baguette slices with garlic butter.",
+            "price": "4.25",
             "status": 1,
             "category": "starter",
-            "created_on": "2024-06-03T11:30:00Z"
+            "created_on": "2025-06-30T15:48:49.706680Z"
         }
     },
     {
         "model": "menu.menuitem",
         "pk": 4,
         "fields": {
-            "name": "Ribeye Steak",
-            "description": "Juicy ribeye steak cooked to your liking with garlic butter.",
-            "price": "22.00",
+            "name": "Stuffed Mushrooms",
+            "description": "Mushrooms filled with cheese and herbs.",
+            "price": "6.00",
             "status": 1,
-            "category": "main",
-            "created_on": "2024-06-04T18:45:00Z"
+            "category": "starter",
+            "created_on": "2025-06-30T15:49:49.706680Z"
         }
     },
     {
         "model": "menu.menuitem",
         "pk": 5,
         "fields": {
-            "name": "Vegan Buddha Bowl",
-            "description": "A nourishing bowl of quinoa, chickpeas, roasted veggies, and tahini.",
-            "price": "11.25",
+            "name": "Chicken Satay",
+            "description": "Grilled skewers of marinated chicken served with peanut sauce.",
+            "price": "7.00",
             "status": 1,
-            "category": "vegan",
-            "created_on": "2024-06-05T12:00:00Z"
+            "category": "starter",
+            "created_on": "2025-06-30T15:50:49.706680Z"
         }
     },
     {
         "model": "menu.menuitem",
         "pk": 6,
         "fields": {
-            "name": "Garlic Bread",
-            "description": "Toasted baguette slices with garlic butter and herbs.",
-            "price": "4.50",
+            "name": "French Onion Soup",
+            "description": "Caramelized onions in beef broth with melted gruy\u00e8re.",
+            "price": "6.75",
             "status": 1,
             "category": "starter",
-            "created_on": "2024-06-06T12:00:00Z"
+            "created_on": "2025-06-30T15:51:49.706680Z"
         }
     },
     {
         "model": "menu.menuitem",
         "pk": 7,
         "fields": {
-            "name": "Spaghetti Carbonara",
-            "description": "Spaghetti tossed with creamy egg sauce, pancetta, and parmesan.",
-            "price": "12.99",
+            "name": "Caesar Salad",
+            "description": "Romaine, croutons, parmesan, and Caesar dressing.",
+            "price": "8.00",
             "status": 1,
-            "category": "main",
-            "created_on": "2024-06-07T14:15:00Z"
+            "category": "starter",
+            "created_on": "2025-06-30T15:52:49.706680Z"
         }
     },
     {
         "model": "menu.menuitem",
         "pk": 8,
         "fields": {
-            "name": "Tiramisu",
-            "description": "Classic Italian dessert with mascarpone, espresso, and cocoa.",
-            "price": "6.75",
+            "name": "Greek Salad",
+            "description": "Cucumbers, tomatoes, olives, onion, and feta.",
+            "price": "8.50",
             "status": 1,
-            "category": "dessert",
-            "created_on": "2024-06-08T16:00:00Z"
+            "category": "starter",
+            "created_on": "2025-06-30T15:53:49.706680Z"
         }
     },
     {
         "model": "menu.menuitem",
         "pk": 9,
         "fields": {
-            "name": "Espresso",
-            "description": "Strong, single shot of freshly brewed espresso.",
-            "price": "2.50",
+            "name": "Caprese Salad",
+            "description": "Fresh mozzarella, tomatoes, and basil.",
+            "price": "9.00",
             "status": 1,
-            "category": "drink",
-            "created_on": "2024-06-09T09:00:00Z"
+            "category": "starter",
+            "created_on": "2025-06-30T15:54:49.706680Z"
         }
     },
     {
         "model": "menu.menuitem",
         "pk": 10,
         "fields": {
-            "name": "Lemonade",
-            "description": "Freshly squeezed lemonade with mint and ice.",
-            "price": "3.00",
+            "name": "Quinoa Salad",
+            "description": "Quinoa with mixed greens, cranberries, and nuts.",
+            "price": "9.25",
             "status": 1,
-            "category": "drink",
-            "created_on": "2024-06-09T09:05:00Z"
+            "category": "starter",
+            "created_on": "2025-06-30T15:55:49.706680Z"
         }
     },
     {
         "model": "menu.menuitem",
         "pk": 11,
         "fields": {
-            "name": "Stuffed Mushrooms",
-            "description": "Mushrooms stuffed with cheese, herbs, and breadcrumbs.",
-            "price": "7.25",
+            "name": "Beetroot & Goat Cheese Salad",
+            "description": "Roasted beets, goat cheese, and arugula.",
+            "price": "9.75",
             "status": 1,
             "category": "starter",
-            "created_on": "2024-06-09T12:30:00Z"
+            "created_on": "2025-06-30T15:56:49.706680Z"
         }
     },
     {
         "model": "menu.menuitem",
         "pk": 12,
         "fields": {
-            "name": "Panna Cotta",
-            "description": "Creamy vanilla panna cotta with raspberry sauce.",
-            "price": "6.50",
+            "name": "Margherita Pizza",
+            "description": "Tomato, mozzarella, and basil on a thin crust.",
+            "price": "11.00",
             "status": 1,
-            "category": "dessert",
-            "created_on": "2024-06-10T15:00:00Z"
+            "category": "main",
+            "created_on": "2025-06-30T15:57:49.706680Z"
         }
     },
     {
         "model": "menu.menuitem",
         "pk": 13,
         "fields": {
-            "name": "Iced Tea",
-            "description": "Chilled brewed tea with lemon and a hint of peach.",
-            "price": "2.80",
+            "name": "Spaghetti Carbonara",
+            "description": "Pasta with pancetta, egg, and cheese.",
+            "price": "13.50",
             "status": 1,
-            "category": "drink",
-            "created_on": "2024-06-10T15:10:00Z"
+            "category": "main",
+            "created_on": "2025-06-30T15:58:49.706680Z"
         }
     },
     {
         "model": "menu.menuitem",
         "pk": 14,
         "fields": {
-            "name": "Mushroom Risotto",
-            "description": "Creamy risotto with wild mushrooms and truffle oil.",
-            "price": "13.45",
+            "name": "Beef Lasagna",
+            "description": "Layers of pasta, beef ragu, and b\u00e9chamel sauce.",
+            "price": "14.75",
             "status": 1,
-            "category": "vegan",
-            "created_on": "2024-06-11T13:20:00Z"
+            "category": "main",
+            "created_on": "2025-06-30T15:59:49.706680Z"
         }
     },
     {
         "model": "menu.menuitem",
         "pk": 15,
         "fields": {
+            "name": "Chicken Alfredo",
+            "description": "Grilled chicken over fettuccine in Alfredo sauce.",
+            "price": "13.25",
+            "status": 1,
+            "category": "main",
+            "created_on": "2025-06-30T16:00:49.706680Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 16,
+        "fields": {
+            "name": "Grilled Salmon",
+            "description": "Salmon filet served with seasonal vegetables.",
+            "price": "17.50",
+            "status": 1,
+            "category": "main",
+            "created_on": "2025-06-30T16:01:49.706680Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 17,
+        "fields": {
+            "name": "Ribeye Steak",
+            "description": "Grilled ribeye with herb butter and fries.",
+            "price": "21.00",
+            "status": 1,
+            "category": "main",
+            "created_on": "2025-06-30T16:02:49.706680Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 18,
+        "fields": {
+            "name": "Vegetable Stir Fry",
+            "description": "Mixed vegetables in soy-ginger sauce over rice.",
+            "price": "12.00",
+            "status": 1,
+            "category": "main",
+            "created_on": "2025-06-30T16:03:49.706680Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 19,
+        "fields": {
+            "name": "Vegan Buddha Bowl",
+            "description": "Quinoa, chickpeas, roasted veggies, tahini.",
+            "price": "11.50",
+            "status": 1,
+            "category": "main",
+            "created_on": "2025-06-30T16:04:49.706680Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 20,
+        "fields": {
+            "name": "Mushroom Risotto",
+            "description": "Creamy risotto with wild mushrooms and truffle oil.",
+            "price": "13.95",
+            "status": 1,
+            "category": "main",
+            "created_on": "2025-06-30T16:05:49.706680Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 21,
+        "fields": {
+            "name": "Tiramisu",
+            "description": "Layers of mascarpone, espresso-soaked biscuits, and cocoa.",
+            "price": "6.50",
+            "status": 1,
+            "category": "dessert",
+            "created_on": "2025-06-30T16:06:49.706680Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 22,
+        "fields": {
             "name": "Chocolate Lava Cake",
-            "description": "Warm chocolate cake with a gooey molten center.",
+            "description": "Molten chocolate center served warm.",
             "price": "7.00",
             "status": 1,
             "category": "dessert",
-            "created_on": "2024-06-12T18:10:00Z"
+            "created_on": "2025-06-30T16:07:49.706680Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 23,
+        "fields": {
+            "name": "Panna Cotta",
+            "description": "Vanilla custard with raspberry coulis.",
+            "price": "6.25",
+            "status": 1,
+            "category": "dessert",
+            "created_on": "2025-06-30T16:08:49.706680Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 24,
+        "fields": {
+            "name": "Apple Crumble",
+            "description": "Baked apples with oat topping and vanilla ice cream.",
+            "price": "6.80",
+            "status": 1,
+            "category": "dessert",
+            "created_on": "2025-06-30T16:09:49.706680Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 25,
+        "fields": {
+            "name": "Cheesecake",
+            "description": "Classic baked cheesecake with strawberry sauce.",
+            "price": "7.25",
+            "status": 1,
+            "category": "dessert",
+            "created_on": "2025-06-30T16:10:49.706680Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 26,
+        "fields": {
+            "name": "Espresso",
+            "description": "Single shot of strong coffee.",
+            "price": "2.50",
+            "status": 1,
+            "category": "drink",
+            "created_on": "2025-06-30T16:11:49.706680Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 27,
+        "fields": {
+            "name": "Cappuccino",
+            "description": "Espresso with steamed milk and foam.",
+            "price": "3.25",
+            "status": 1,
+            "category": "drink",
+            "created_on": "2025-06-30T16:12:49.706680Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 28,
+        "fields": {
+            "name": "Lemonade",
+            "description": "Freshly squeezed lemon drink.",
+            "price": "3.00",
+            "status": 1,
+            "category": "drink",
+            "created_on": "2025-06-30T16:13:49.706680Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 29,
+        "fields": {
+            "name": "Iced Tea",
+            "description": "Chilled black tea with lemon.",
+            "price": "2.80",
+            "status": 1,
+            "category": "drink",
+            "created_on": "2025-06-30T16:14:49.706680Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 30,
+        "fields": {
+            "name": "House Red Wine",
+            "description": "A glass of our selected red wine.",
+            "price": "5.50",
+            "status": 1,
+            "category": "drink",
+            "created_on": "2025-06-30T16:15:49.706680Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 31,
+        "fields": {
+            "name": "House White Wine",
+            "description": "A glass of our selected white wine.",
+            "price": "5.50",
+            "status": 1,
+            "category": "drink",
+            "created_on": "2025-06-30T16:16:49.706680Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 32,
+        "fields": {
+            "name": "Craft Beer",
+            "description": "Local craft beer on tap.",
+            "price": "4.75",
+            "status": 1,
+            "category": "drink",
+            "created_on": "2025-06-30T16:17:49.706680Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 33,
+        "fields": {
+            "name": "Signature Cocktail - Sunset Glow",
+            "description": "Gin, elderflower, lemon juice, and cranberry.",
+            "price": "8.50",
+            "status": 1,
+            "category": "drink",
+            "created_on": "2025-06-30T16:18:49.706680Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 34,
+        "fields": {
+            "name": "Grilled Tofu Skewers",
+            "description": "Tofu marinated in soy-ginger glaze, grilled with bell peppers and zucchini.",
+            "price": "11.00",
+            "status": 1,
+            "category": "vegan",
+            "created_on": "2025-06-30T15:54:59.162286Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 35,
+        "fields": {
+            "name": "Vegan Lentil Curry",
+            "description": "Red lentils stewed in coconut milk, tomatoes, and spices served with rice.",
+            "price": "10.50",
+            "status": 1,
+            "category": "vegan",
+            "created_on": "2025-06-30T15:55:59.162286Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 36,
+        "fields": {
+            "name": "Stuffed Bell Peppers",
+            "description": "Peppers filled with quinoa, black beans, and vegetables, topped with vegan cheese.",
+            "price": "11.25",
+            "status": 1,
+            "category": "vegan",
+            "created_on": "2025-06-30T15:56:59.162286Z"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 37,
+        "fields": {
+            "name": "Zucchini Noodles Primavera",
+            "description": "Zoodles tossed with cherry tomatoes, spinach, garlic, and olive oil.",
+            "price": "10.75",
+            "status": 1,
+            "category": "vegan",
+            "created_on": "2025-06-30T15:57:59.162286Z"
         }
     }
 ]

@@ -1,5 +1,5 @@
-from .models import MenuItem
 from django.views import generic
+from .models import MenuItem
 
 class MenuListView(generic.ListView):
     model = MenuItem
