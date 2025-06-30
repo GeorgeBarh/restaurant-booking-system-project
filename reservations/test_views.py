@@ -3,6 +3,8 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from reservations.models import Booking, Table
 from datetime import date, time
+from django.utils import timezone
+from datetime import timedelta
 
 
 class TestBookingViews(TestCase):
@@ -103,5 +105,28 @@ class TestBookingViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "tester")
         self.assertContains(response, "Window seat")
+
+
+    def test_my_bookings_view_marks_past_bookings(self):
+        """Ensure past bookings are distinguishable in the template context"""
+            # Create a past booking
+        past_booking = Booking.objects.create(
+            user=self.user,
+            name="Old Booking",
+            email="old@example.com",
+            phone="1112223333",
+            guests=2,
+            date=date.today() - timedelta(days=2),
+            time=time(18, 0),
+            table=self.table
+        )
+
+        self.client.login(username="tester", password="testpass123")
+        response = self.client.get(reverse('my_bookings'))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(past_booking, response.context['bookings'])
+        self.assertIn("today", response.context)
+        self.assertLess(past_booking.date, response.context["today"])
 
    
