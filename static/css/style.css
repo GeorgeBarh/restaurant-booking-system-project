@@ -128,6 +128,88 @@ footer i {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
+.contact-info p,
+.contact-info a {
+    font-size: 1.1rem;
+    font-family: 'Lato', sans-serif;
+}
+
+.contact-info h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.card-glass form input,
+.card-glass form textarea,
+.card-glass form select {
+    background-color: rgba(255, 255, 255, 0.805);
+    /* semi-transparent white */
+    color: rgb(32, 29, 29);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+
+}
+
+.card-glass form input::placeholder,
+.card-glass form textarea::placeholder {
+    color: rgba(23, 23, 23, 0.91);
+}
+
+/* menu  */
+
+/* --- Make menu heading consistent --- */
+.menu-heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* --- Style filter buttons --- */
+.menu-filters .btn {
+    font-size: 1.1rem;
+    margin: 0 5px 10px 5px;
+    padding: 0.4rem 1rem;
+    color: white;
+    border-color: white;
+}
+
+.menu-filters .btn:hover,
+.menu-filters .btn.active {
+    background-color: #188181;
+    color: white;
+    border-color: #188181;
+}
+
+/* --- Make menu cards slightly transparent --- */
+.menu-card {
+    background: rgba(255, 255, 255, 0.88);
+    /* adjust 0.88 to make it more or less transparent */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+.menu-bg {
+    background-image: url('/static/images/menu-bg.jpg');
+    /* Your chosen image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.menu-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    /* Dark overlay */
+    z-index: 0;
+}
+
+
 
 
 /* ====== HERO SECTION ====== */
@@ -243,31 +325,4 @@ form button:hover {
 /* ====== UTILITIES ====== */
 .mt-5 {
     margin-top: 3rem;
-}
-
-.contact-info p,
-.contact-info a {
-    font-size: 1.1rem;
-    font-family: 'Lato', sans-serif;
-}
-
-.contact-info h3 {
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-}
-
-.card-glass form input,
-.card-glass form textarea,
-.card-glass form select {
-    background-color: rgba(255, 255, 255, 0.805);
-    /* semi-transparent white */
-    color: rgb(32, 29, 29);
-    border: 1px solid rgba(0, 0, 0, 0.2);
-
-}
-
-.card-glass form input::placeholder,
-.card-glass form textarea::placeholder {
-    color: rgba(23, 23, 23, 0.91);
 }
