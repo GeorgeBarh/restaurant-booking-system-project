@@ -55,3 +55,21 @@ class TestBookingViews(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Your reservation has been canceled.")
+
+    def test_user_cannot_edit_another_users_booking(self):
+        """Ensure users can't access/edit others' bookings"""
+        other_user = User.objects.create_user(username="hacker", password="hackpass123")
+        self.client.login(username="hacker", password="hackpass123")
+
+        response = self.client.get(reverse('edit_booking', args=[self.booking.pk]))
+        self.assertEqual(response.status_code, 404)
+
+    def test_user_cannot_cancel_another_users_booking(self):
+        """Ensure users can't cancel others' bookings"""
+        other_user = User.objects.create_user(username="hacker", password="hackpass123")
+        self.client.login(username="hacker", password="hackpass123")
+
+        response = self.client.post(reverse('cancel_booking', args=[self.booking.pk]), follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Booking not found or unauthorized.")
+
