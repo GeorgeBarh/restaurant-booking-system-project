@@ -150,5 +150,30 @@ class TestBookingViews(TestCase):
         self.assertIn(self.booking, response.context["bookings"])
         self.assertNotIn(other_booking, response.context["bookings"])
 
+        from django.utils.timezone import now, timedelta
+
+    def test_booking_cannot_be_created_in_past(self):
+        """Ensure user cannot book a table in the past"""
+        self.client.login(username="tester", password="testpass123")
+
+        past_date = date.today() - timedelta(days=1)
+        response = self.client.post(
+            reverse("book_table"),
+            {
+                "name": "John TimeTraveler",
+                "email": "future@back.com",
+                "phone": "1112223333",
+                "guests": 2,
+                "date": past_date,
+                "time": "18:00",
+                "notes": "Trying to book in the past"
+            },
+            follow=True
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "You cannot book in the past.")
+
+
 
    
