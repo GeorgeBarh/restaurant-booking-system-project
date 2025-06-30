@@ -19,7 +19,7 @@ class Booking(models.Model):
     date = models.DateField()
     time = models.TimeField()
     table = models.ForeignKey(Table, on_delete=models.SET_NULL, null=True, blank=True)
-    notes = models.CharField(max_length=90,blank=True, null=True, help_text="Optional special requests or comments")  
+    notes = models.CharField(max_length=90,blank=True, null=True) 
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:

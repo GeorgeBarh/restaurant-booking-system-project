@@ -15,7 +15,11 @@ class BookingForm(forms.ModelForm):
                 (f"{h:02d}:{m:02d}", f"{h:02d}:{m:02d}")
                 for h in range(12, 22)
                 for m in (0, 30)
-            ])
+            ]),
+            'notes': forms.Textarea(attrs={
+                'rows': 3,
+                'placeholder': 'Optional special requests or comments',
+            }),
         }
 
     def __init__(self, *args, **kwargs):
@@ -29,5 +33,6 @@ class BookingForm(forms.ModelForm):
             Field('guests'),
             Field('date'),
             Field('time'),
+            Field('notes'),
             Submit('submit', 'Book Table', css_class='btn btn-primary w-100 mt-3')
         )
