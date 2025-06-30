@@ -8,7 +8,7 @@ from django.core.exceptions import ValidationError
 class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
-        fields = ['name', 'email', 'phone', 'guests', 'date', 'time']
+        fields = ['name', 'email', 'phone', 'guests', 'date', 'time', 'notes']
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
             'time': forms.Select(choices=[

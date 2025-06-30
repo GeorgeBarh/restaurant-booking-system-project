@@ -3,15 +3,6 @@
 <div class="container mt-5">
     <h2 class="mb-4 text-center">My Bookings</h2>
 
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    {% endfor %}
-    {% endif %}
-
     {% if bookings %}
     <div class="table-responsive">
         <table class="table table-bordered table-striped">
@@ -22,6 +13,7 @@
                     <th>Guests</th>
                     <th>Table</th>
                     <th>Phone</th>
+                    <th>Notes</th>
                     <th class="text-center">Actions</th>
                 </tr>
             </thead>
@@ -33,6 +25,7 @@
                     <td>{{ booking.guests }}</td>
                     <td>{{ booking.table }}</td>
                     <td>{{ booking.phone }}</td>
+                    <td>{{ booking.notes }}</td>
                     <td class="text-center align-middle">
                         {% if booking.date >= today %}
                         <div class="d-flex justify-content-center align-items-center gap-2">
