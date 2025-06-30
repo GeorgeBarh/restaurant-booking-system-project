@@ -75,19 +75,6 @@ footer i {
     background-position: center;
 }
 
-.contact-bg {
-    background-image: url('/static/images/contact-bg.jpg');
-    background-size: cover;
-    background-position: center;
-}
-
-.form-text {
-    color: white !important;
-    font-size: 1rem;
-    margin-top: 0.25rem;
-}
-
-
 .card-glass {
     background: rgba(255, 255, 255, 0.35);
     /* white with some transparency */
@@ -106,13 +93,41 @@ footer i {
 }
 
 .bg-overlay {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.3);
 
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
+.contact-bg {
+    position: relative;
+    background-image: url('/static/images/contact-bg.jpg');
+    /* your background image */
+    background-size: cover;
+    background-position: center;
+}
+
+.contact-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(72, 69, 69, 0.1);
+    /* dark overlay */
+    z-index: -1;
+}
+
+.contact-card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    padding: 2rem;
+    color: white;
+    z-index: 1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
 
 
 /* ====== HERO SECTION ====== */
@@ -228,4 +243,16 @@ form button:hover {
 /* ====== UTILITIES ====== */
 .mt-5 {
     margin-top: 3rem;
+}
+
+.contact-info p,
+.contact-info a {
+    font-size: 1.1rem;
+    font-family: 'Lato', sans-serif;
+}
+
+.contact-info h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
 }
