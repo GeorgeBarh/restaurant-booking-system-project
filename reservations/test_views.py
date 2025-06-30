@@ -5,6 +5,7 @@ from reservations.models import Booking, Table
 from datetime import date, time
 from django.utils import timezone
 from datetime import timedelta
+from django.utils.timezone import now, timedelta
 
 
 class TestBookingViews(TestCase):
@@ -150,7 +151,6 @@ class TestBookingViews(TestCase):
         self.assertIn(self.booking, response.context["bookings"])
         self.assertNotIn(other_booking, response.context["bookings"])
 
-        from django.utils.timezone import now, timedelta
 
     def test_booking_cannot_be_created_in_past(self):
         """Ensure user cannot book a table in the past"""
@@ -174,6 +174,26 @@ class TestBookingViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "You cannot book in the past.")
 
+    def test_booking_fails_when_no_table_available(self):
+        """Ensure booking fails if no table is available for given time"""
+        self.client.login(username="tester", password="testpass123")
+        
+        # Attempt to double-book same table at same time via form
+        response = self.client.post(
+            reverse('book_table'),
+            {
+                'name': 'Alice',
+                'email': 'alice@example.com',
+                'phone': '0000000000',
+                'guests': 2,
+                'date': self.booking.date,
+                'time': self.booking.time.strftime('%H:%M'),
+                'notes': 'Test double booking',
+            },
+            follow=True
+        )
 
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "No tables available")
+        self.assertEqual(Booking.objects.count(), 1)  # Only original booking should exist
 
-   
