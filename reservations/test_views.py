@@ -73,3 +73,9 @@ class TestBookingViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Booking not found or unauthorized.")
 
+    def test_authenticated_user_can_cancel_own_booking(self):
+        self.client.login(username='tester', password='testpass123')
+        response = self.client.post(reverse('cancel_booking', args=[self.booking.pk]), follow=True)
+        self.assertRedirects(response, reverse('my_bookings'))
+        self.assertContains(response, 'Your reservation has been canceled.')
+        self.assertFalse(Booking.objects.filter(pk=self.booking.pk).exists())
