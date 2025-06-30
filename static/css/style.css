@@ -209,6 +209,42 @@ footer i {
     z-index: 0;
 }
 
+/* my_bookings */
+
+.bookings-bg {
+    background-image: url('/static/images/bookings-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    position: relative;
+}
+
+.card-glass-solid {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 0.75rem;
+    backdrop-filter: blur(6px);
+}
+
+.card-glass-solid table td,
+.card-glass-solid table th {
+    color: #000 !important;
+}
+
+.btn-edit-custom {
+    background-color: #1e2a3a;
+    color: white;
+    border: none;
+}
+
+.btn-edit-custom:hover {
+    background-color: #2d3a4d;
+    color: white;
+}
+
+
 
 
 

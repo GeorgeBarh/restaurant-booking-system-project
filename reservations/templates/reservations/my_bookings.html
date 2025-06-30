@@ -1,65 +1,104 @@
 {% extends "base.html" %}
+{% load static %}
+
 {% block content %}
-<div class="container mt-5">
-    <h2 class="mb-4 text-center">My Bookings</h2>
+<div class="bookings-bg position-relative py-5">
+    <div class="bg-overlay">
+        <div class="container py-5">
+            <div class="card card-glass-solid shadow-sm text-white">
+                <div class="card-body">
+                    <h2 class="mb-4 text-center fw-bold display-5">My Bookings</h2>
 
-    {% if bookings %}
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped">
-            <thead class="table-light">
-                <tr>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Guests</th>
-                    <th>Table</th>
-                    <th>Phone</th>
-                    <th>Notes</th>
-                    <th class="text-center">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for booking in bookings %}
-                <tr>
-                    <td>{{ booking.date }}</td>
-                    <td>{{ booking.time }}</td>
-                    <td>{{ booking.guests }}</td>
-                    <td>{{ booking.table }}</td>
-                    <td>{{ booking.phone }}</td>
-                    <td>{{ booking.notes }}</td>
-                    <td class="text-center align-middle">
-                        {% if booking.date >= today %}
-                        <div class="d-flex justify-content-center align-items-center gap-2">
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
 
-                            <!-- Edit Button (same structure as Cancel) -->
-                            <form action="{% url 'edit_booking' booking.pk %}" method="get" class="m-0 p-0">
-                                <button type="submit" class="btn btn-outline-secondary btn-sm">
-                                    Edit
-                                </button>
-                            </form>
+                    {% if bookings %}
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped text-white">
+                            <thead class="table-light text-dark">
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Guests</th>
+                                    <th>Table</th>
+                                    <th>Phone</th>
+                                    <th>Notes</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for booking in bookings %}
+                                <tr class="text-white">
+                                    <td>{{ booking.date }}</td>
+                                    <td>{{ booking.time }}</td>
+                                    <td>{{ booking.guests }}</td>
+                                    <td>{{ booking.table }}</td>
+                                    <td>{{ booking.phone }}</td>
+                                    <td>{{ booking.notes }}</td>
+                                    <td class="text-center align-middle">
+                                        {% if booking.date >= today %}
+                                        <div class="d-flex justify-content-center align-items-center gap-2">
+                                            <!-- Edit -->
+                                            <form action="{% url 'edit_booking' booking.pk %}" method="get" class="m-0">
+                                                <button type="submit" class="btn btn-edit-custom btn-sm">
+                                                    Edit
+                                                </button>
+                                            </form>
 
-                            <!-- Cancel Button -->
-                            <form action="{% url 'cancel_booking' booking.pk %}" method="post" class="m-0 p-0">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-danger btn-sm">
-                                    Cancel
-                                </button>
-                            </form>
-
-                        </div>
-                        {% else %}
-                        <span class="text-muted">Past</span>
-                        {% endif %}
-                    </td>
-
-
-
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                                            <!-- Cancel trigger -->
+                                            <!-- Cancel Button -->
+                                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#cancelModal" data-booking-id="{{ booking.id }}">
+                                                Cancel
+                                            </button>
+                                        </div>
+                                        {% else %}
+                                        <span class="text-muted">Past</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <p class="text-center mt-3">You have no bookings.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
-    {% else %}
-    <p class="text-center">You have no bookings.</p>
-    {% endif %}
 </div>
+
+<div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cancelModalLabel">Confirm Cancellation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to cancel this booking?
+            </div>
+            <div class="modal-footer">
+                <form method="post" id="cancelForm">
+                    {% csrf_token %}
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="submit" class="btn btn-danger">Yes, Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block extras %}
+<script src="{% static 'js/cancel_btn.js' %}"></script>
 {% endblock %}
