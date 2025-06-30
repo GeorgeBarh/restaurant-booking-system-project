@@ -1,7 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container mt-5">
-    <h2 class="mb-4">My Bookings</h2>
+    <h2 class="mb-4 text-center">My Bookings</h2>
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+
     {% if bookings %}
     <div class="table-responsive">
         <table class="table table-bordered table-striped">
@@ -12,7 +22,7 @@
                     <th>Guests</th>
                     <th>Table</th>
                     <th>Phone</th>
-                    <th>Actions</th>
+                    <th class="text-center">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,23 +33,15 @@
                     <td>{{ booking.guests }}</td>
                     <td>{{ booking.table }}</td>
                     <td>{{ booking.phone }}</td>
-                    <td>
+                    <td class="text-center">
                         {% if booking.date >= today %}
-                        <div class="d-flex gap-2">
-                            <!-- Edit button -->
-                            <a href="{% url 'edit_booking' booking.id %}" class="btn btn-secondary btn-sm">
-                                Edit
-                            </a>
+                        <a href="{% url 'edit_booking' booking.pk %}" class="btn btn-sm btn-outline-secondary">Edit</a>
 
-                            <!-- Cancel button -->
-                            <form action="{% url 'cancel_booking' booking.pk %}" method="post"
-                                onsubmit="return confirm('Are you sure you want to cancel this booking?');">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-danger btn-sm">
-                                    Cancel
-                                </button>
-                            </form>
-                        </div>
+                        <form action="{% url 'cancel_booking' booking.pk %}" method="post" style="display:inline-block;"
+                            onsubmit="return confirm('Are you sure you want to cancel this booking?');">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-sm btn-danger">Cancel</button>
+                        </form>
                         {% else %}
                         <span class="text-muted">Past</span>
                         {% endif %}
@@ -50,7 +52,7 @@
         </table>
     </div>
     {% else %}
-    <p>You have no bookings.</p>
+    <p class="text-center">You have no bookings.</p>
     {% endif %}
 </div>
 {% endblock %}

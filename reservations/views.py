@@ -24,7 +24,7 @@ def form_valid(self, form):
     # Prevent booking in the past
     dt_combined = make_aware(datetime.combine(date_, time_))
     if dt_combined < datetime.now().astimezone():
-        messages.error(self.request, "❌ You cannot book in the past.")
+        messages.error(self.request, " You cannot book in the past.")
         return redirect('book_table')
 
     # Find available table
@@ -97,7 +97,7 @@ class UpdateBookingView(LoginRequiredMixin, UpdateView):
             time_ = datetime.strptime(time_, "%H:%M").time()
         combined = make_aware(datetime.combine(date_, time_))
         if combined < timezone.now():
-            messages.error(self.request, "❌ Cannot book in the past.")
+            messages.error(self.request, " Cannot book in the past.")
             return redirect("my_bookings")
 
         # Check table availability excluding this booking

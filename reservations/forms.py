@@ -14,23 +14,12 @@ TIME_CHOICES = [
 ]
 
 class BookingForm(forms.ModelForm):
-    guests = forms.IntegerField(
-        min_value=1,
-        max_value=6,
-        label="Number of Guests",
-        widget=forms.NumberInput(attrs={'class': 'form-control'})
-    )
-    time = forms.ChoiceField(
-        choices=TIME_CHOICES,
-        label="Time",
-        widget=forms.Select(attrs={'class': 'form-select'})
-    )
-
     class Meta:
         model = Booking
         fields = ['name', 'email', 'phone', 'guests', 'date', 'time']
         widgets = {
-            'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'date': forms.DateInput(attrs={'type': 'date'}),
+            'time': forms.TimeInput(attrs={'type': 'time'}),
         }
 
     def __init__(self, *args, **kwargs):
