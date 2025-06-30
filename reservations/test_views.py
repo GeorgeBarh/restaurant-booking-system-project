@@ -96,4 +96,12 @@ class TestBookingViews(TestCase):
             f"/accounts/login/?next=/reservations/cancel/{self.booking.pk}/"
         )
 
+    def test_my_bookings_view_shows_user_bookings(self):
+        """Authenticated users should see their own bookings listed"""
+        self.client.login(username="tester", password="testpass123")
+        response = self.client.get(reverse('my_bookings'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "tester")
+        self.assertContains(response, "Window seat")
+
    
