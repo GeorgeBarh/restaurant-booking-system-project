@@ -79,3 +79,21 @@ class TestBookingViews(TestCase):
         self.assertRedirects(response, reverse('my_bookings'))
         self.assertContains(response, 'Your reservation has been canceled.')
         self.assertFalse(Booking.objects.filter(pk=self.booking.pk).exists())
+
+    def test_unauthenticated_user_cannot_access_edit_booking(self):
+        """Unauthenticated users should be redirected to login when accessing edit view"""
+        response = self.client.get(reverse('edit_booking', args=[self.booking.pk]), follow=True)
+        self.assertRedirects(
+            response,
+            f"/accounts/login/?next=/reservations/edit/{self.booking.pk}/"
+        )
+
+    def test_unauthenticated_user_cannot_cancel_booking(self):
+        """Unauthenticated users should be redirected to login when trying to cancel a booking"""
+        response = self.client.post(reverse('cancel_booking', args=[self.booking.pk]), follow=True)
+        self.assertRedirects(
+            response,
+            f"/accounts/login/?next=/reservations/cancel/{self.booking.pk}/"
+        )
+
+   
