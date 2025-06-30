@@ -129,4 +129,26 @@ class TestBookingViews(TestCase):
         self.assertIn("today", response.context)
         self.assertLess(past_booking.date, response.context["today"])
 
+    def test_my_bookings_view_shows_only_users_own_bookings(self):
+        """Ensure users see only their own bookings in my_bookings view"""
+        other_user = User.objects.create_user(username="outsider", password="outpass123")
+        other_booking = Booking.objects.create(
+            user=other_user,
+            name="Intruder",
+            email="intruder@example.com",
+            phone="9998887777",
+            guests=2,
+            date=date.today(),
+            time=time(20, 0),
+            table=self.table
+        )
+
+        self.client.login(username="tester", password="testpass123")
+        response = self.client.get(reverse('my_bookings'))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(self.booking, response.context["bookings"])
+        self.assertNotIn(other_booking, response.context["bookings"])
+
+
    
