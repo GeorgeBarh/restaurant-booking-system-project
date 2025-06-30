@@ -3,15 +3,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Submit
 from .models import Booking
 from datetime import time
-from django.utils import timezone
 from django.core.exceptions import ValidationError
-from datetime import time, timedelta
-
-TIME_CHOICES = [
-    (time(hour=h, minute=m).strftime("%H:%M"), f"{h:02d}:{m:02d}")
-    for h in range(12, 22)
-    for m in (0, 30)
-]
 
 class BookingForm(forms.ModelForm):
     class Meta:
@@ -19,7 +11,11 @@ class BookingForm(forms.ModelForm):
         fields = ['name', 'email', 'phone', 'guests', 'date', 'time']
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
-            'time': forms.TimeInput(attrs={'type': 'time'}),
+            'time': forms.Select(choices=[
+                (f"{h:02d}:{m:02d}", f"{h:02d}:{m:02d}")
+                for h in range(12, 22)
+                for m in (0, 30)
+            ])
         }
 
     def __init__(self, *args, **kwargs):

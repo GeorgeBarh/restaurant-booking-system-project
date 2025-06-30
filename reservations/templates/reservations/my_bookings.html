@@ -33,19 +33,33 @@
                     <td>{{ booking.guests }}</td>
                     <td>{{ booking.table }}</td>
                     <td>{{ booking.phone }}</td>
-                    <td class="text-center">
+                    <td class="text-center align-middle">
                         {% if booking.date >= today %}
-                        <a href="{% url 'edit_booking' booking.pk %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                        <div class="d-flex justify-content-center align-items-center gap-2">
 
-                        <form action="{% url 'cancel_booking' booking.pk %}" method="post" style="display:inline-block;"
-                            onsubmit="return confirm('Are you sure you want to cancel this booking?');">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-sm btn-danger">Cancel</button>
-                        </form>
+                            <!-- Edit Button (same structure as Cancel) -->
+                            <form action="{% url 'edit_booking' booking.pk %}" method="get" class="m-0 p-0">
+                                <button type="submit" class="btn btn-outline-secondary btn-sm">
+                                    Edit
+                                </button>
+                            </form>
+
+                            <!-- Cancel Button -->
+                            <form action="{% url 'cancel_booking' booking.pk %}" method="post" class="m-0 p-0">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    Cancel
+                                </button>
+                            </form>
+
+                        </div>
                         {% else %}
                         <span class="text-muted">Past</span>
                         {% endif %}
                     </td>
+
+
+
                 </tr>
                 {% endfor %}
             </tbody>
