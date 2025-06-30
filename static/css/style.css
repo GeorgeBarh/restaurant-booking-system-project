@@ -67,6 +67,54 @@ footer i {
     font-size: 1.2rem;
 }
 
+/* background images */
+
+.reservation-bg {
+    background-image: url('../images/reservation-bg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.contact-bg {
+    background-image: url('/static/images/contact-bg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.form-text {
+    color: white !important;
+    font-size: 1rem;
+    margin-top: 0.25rem;
+}
+
+
+.card-glass {
+    background: rgba(255, 255, 255, 0.35);
+    /* white with some transparency */
+    /* backdrop-filter: blur(6px); */
+    /* frosted glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 0.75rem;
+}
+
+.bg-cover {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+.bg-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
 /* ====== HERO SECTION ====== */
 .hero-section {
     background: linear-gradient(rgba(0, 0, 0, 0.5),

@@ -1,31 +1,36 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+<div class="reservation-bg py-5">
+    <div class="bg-overlay">
+        <div class="container py-5 text-white">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
 
-            {% if messages %}
-            {% for message in messages %}
-            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            {% endfor %}
-            {% endif %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
 
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h2 class="card-title mb-4 text-center">Book a Table</h2>
-                    <form method="post" novalidate>
-                        {% csrf_token %}
-                        {{ form|crispy }}
-                        <button type="submit" class="btn btn-primary w-100 mt-3">Confirm Reservation</button>
-                    </form>
+                    <div class="card card-glass shadow-sm text-white">
+                        <div class="card-body">
+                            <h1 class="text-center mb-4 fw-bold text-white display-5">Book a Table</h1>
+                            <form method="post" novalidate>
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                                <button type="submit" class="btn btn-primary w-100 mt-2">Confirm Reservation</button>
+                            </form>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
         </div>
     </div>
 </div>
