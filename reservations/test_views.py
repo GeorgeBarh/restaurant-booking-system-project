@@ -217,3 +217,23 @@ class TestBookingViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertFormError(response, 'form', 'name', 'This field is required.')
 
+    def test_booking_displayed_on_my_bookings_page(self):
+        self.client.login(username="tester", password="testpass123")
+        response = self.client.get(reverse('my_bookings'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "tester")
+        self.assertContains(response, "Window seat")
+
+    def test_my_bookings_requires_login(self):
+        response = self.client.get(reverse('my_bookings'), follow=True)
+        self.assertRedirects(
+            response,
+            f"/accounts/login/?next=/reservations/my-bookings/"
+        )
+
+    def test_edit_booking_page_shows_prefilled_form(self):
+        self.client.login(username="tester", password="testpass123")
+        response = self.client.get(reverse('edit_booking', args=[self.booking.pk]))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "tester")
+        self.assertContains(response, "Window seat")
