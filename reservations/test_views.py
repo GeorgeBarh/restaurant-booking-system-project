@@ -197,3 +197,23 @@ class TestBookingViews(TestCase):
         self.assertContains(response, "No tables available")
         self.assertEqual(Booking.objects.count(), 1)  # Only original booking should exist
 
+
+    def test_edit_booking_with_missing_required_field(self):
+        """Ensure booking edit fails if a required field is missing"""
+        self.client.login(username='tester', password='testpass123')
+        response = self.client.post(
+            reverse('edit_booking', args=[self.booking.pk]),
+            {
+                'name': '',  # Required field left blank
+                'email': 'test@example.com',
+                'phone': '1234567890',
+                'guests': 2,
+                'date': date.today(),
+                'time': '18:00',
+                'notes': 'Testing missing name'
+            },
+            follow=True
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertFormError(response, 'form', 'name', 'This field is required.')
+
