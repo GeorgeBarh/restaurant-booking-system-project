@@ -1,5 +1,6 @@
 from django.db import models
 
+# Menu item model used to display food items with category filtering
 class MenuItem(models.Model):
     CATEGORY_CHOICES = [
         ("starter", "Starter"),
@@ -18,3 +19,4 @@ class MenuItem(models.Model):
 
     def __str__(self):
         return self.name
+

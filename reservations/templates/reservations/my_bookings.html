@@ -1,3 +1,4 @@
+<!-- Template: my_bookings.html -->
 {% extends "base.html" %}
 {% load static %}
 
@@ -44,15 +45,9 @@
                                     <td class="text-center align-middle">
                                         {% if booking.date >= today %}
                                         <div class="d-flex justify-content-center align-items-center gap-2">
-                                            <!-- Edit -->
                                             <form action="{% url 'edit_booking' booking.pk %}" method="get" class="m-0">
-                                                <button type="submit" class="btn btn-edit-custom btn-sm">
-                                                    Edit
-                                                </button>
+                                                <button type="submit" class="btn btn-edit-custom btn-sm">Edit</button>
                                             </form>
-
-                                            <!-- Cancel trigger -->
-                                            <!-- Cancel Button -->
                                             <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                                 data-bs-target="#cancelModal" data-booking-id="{{ booking.id }}">
                                                 Cancel
@@ -76,6 +71,7 @@
     </div>
 </div>
 
+<!-- Modal -->
 <div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content text-dark">
@@ -97,7 +93,6 @@
     </div>
 </div>
 {% endblock %}
-
 
 {% block extras %}
 <script src="{% static 'js/cancel_btn.js' %}"></script>

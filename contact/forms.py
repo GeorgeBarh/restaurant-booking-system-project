@@ -1,6 +1,7 @@
 from django import forms
 from .models import ContactMessage
 
+# Contact form for message submissions
 class ContactForm(forms.ModelForm):
     class Meta:
         model = ContactMessage

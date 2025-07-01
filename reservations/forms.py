@@ -5,6 +5,7 @@ from .models import Booking
 from datetime import time
 from django.core.exceptions import ValidationError
 
+# Booking form using crispy forms and bootstrap layout
 class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking

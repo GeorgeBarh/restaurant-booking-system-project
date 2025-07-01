@@ -1,13 +1,21 @@
+<!-- Allows logged-in users to edit an existing booking -->
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 
 {% block content %}
+<!-- Main container for the update form -->
 <div class="container mt-5">
     <h2 class="mb-4">Edit Your Reservation</h2>
+
+    <!-- Form to update booking details -->
     <form method="post">
         {% csrf_token %}
         {{ form|crispy }}
+
+        <!-- Submit updated booking -->
         <button type="submit" class="btn btn-primary mt-3">Update</button>
+
+        <!-- Cancel and return to booking list -->
         <a href="{% url 'my_bookings' %}" class="btn btn-secondary mt-3">Cancel</a>
     </form>
 </div>

@@ -13,12 +13,14 @@ from django.urls import reverse_lazy
 from django.utils.timezone import make_aware
 from datetime import datetime
 
+# View to create new table bookings. Enforces login, date logic, and table availability.
 class BookTableView(LoginRequiredMixin, CreateView):
     model = Booking
     form_class = BookingForm
     template_name = "reservations/book_table.html"
 
     def form_valid(self, form):
+        # Attach user to booking
         form.instance.user = self.request.user
         guests = form.cleaned_data['guests']
         date_ = form.cleaned_data['date']
@@ -30,16 +32,13 @@ class BookTableView(LoginRequiredMixin, CreateView):
             messages.error(self.request, " You cannot book in the past.")
             return redirect('book_table')
 
-        # Find available table
+        # Find a suitable table (not already booked, enough seats)
         booked_table_ids = Booking.objects.filter(date=date_, time=time_).values_list('table_id', flat=True)
         available_tables = Table.objects.filter(seats__gte=guests).exclude(id__in=booked_table_ids).order_by('seats')
 
         if available_tables.exists():
             form.instance.table = available_tables.first()
-            messages.success(
-                self.request,
-                f"Table reserved for {guests} guests on {date_} at {time_}."
-            )
+            messages.success(self.request, f"Table reserved for {guests} guests on {date_} at {time_}.")
             return super().form_valid(form)
         else:
             messages.error(self.request, "No tables available for that time and group size.")
@@ -49,6 +48,7 @@ class BookTableView(LoginRequiredMixin, CreateView):
         return reverse_lazy("my_bookings")
 
 
+# Shows a user's future and past bookings, sorted by date/time
 class MyBookingsView(LoginRequiredMixin, ListView):
     model = Booking
     template_name = "reservations/my_bookings.html"
@@ -58,6 +58,7 @@ class MyBookingsView(LoginRequiredMixin, ListView):
         return Booking.objects.filter(user=self.request.user).order_by("date", "time")
 
     def get_context_data(self, **kwargs):
+        # Provide today's date to template to mark past bookings
         context = super().get_context_data(**kwargs)
         context["today"] = timezone.now().date()
         return context
@@ -67,6 +68,7 @@ from django.shortcuts import get_object_or_404
 
 @login_required
 
+# Cancels a user's own booking (POST only). Uses modal confirmation in template.
 @login_required
 def cancel_booking(request, pk):
     booking = Booking.objects.filter(id=pk, user=request.user).first()
@@ -78,13 +80,14 @@ def cancel_booking(request, pk):
     return redirect("my_bookings")
 
 
+# Lets users edit their own booking. Checks past dates and availability like creation view.
 class UpdateBookingView(LoginRequiredMixin, UpdateView):
     model = Booking
     form_class = BookingForm
     template_name = "reservations/update_booking.html"
 
     def get_queryset(self):
-        # Make sure users can only edit their own bookings
+        # Users can only update their own bookings
         return Booking.objects.filter(user=self.request.user)
 
     def form_valid(self, form):
@@ -93,7 +96,7 @@ class UpdateBookingView(LoginRequiredMixin, UpdateView):
         date_ = form.cleaned_data['date']
         time_ = form.cleaned_data['time']
 
-        # Prevent editing to a past datetime
+        # Prevent changes to past bookings
         if isinstance(time_, str):
             time_ = datetime.strptime(time_, "%H:%M").time()
         combined = make_aware(datetime.combine(date_, time_))
@@ -101,11 +104,8 @@ class UpdateBookingView(LoginRequiredMixin, UpdateView):
             messages.error(self.request, " Cannot book in the past.")
             return redirect("my_bookings")
 
-        # Check table availability excluding this booking
-        booked_tables = Booking.objects.filter(
-            date=date_, time=time_
-        ).exclude(id=self.object.id).values_list("table_id", flat=True)
-
+        # Exclude current booking from availability check
+        booked_tables = Booking.objects.filter(date=date_, time=time_).exclude(id=self.object.id).values_list("table_id", flat=True)
         available_tables = Table.objects.filter(seats__gte=guests).exclude(id__in=booked_tables).order_by("seats")
 
         if available_tables.exists():
